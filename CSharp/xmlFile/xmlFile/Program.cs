@@ -43,17 +43,28 @@ namespace xmlFile
                         Console.WriteLine(attr.Value);
                 }
                 // bypassing all the child nodes of <student>
-                foreach (XmlNode studentNodeField in studentNode.ChildNodes)
+                foreach (XmlNode studentFieldNode in studentNode.ChildNodes)
                 {
                     // if node - age
-                    if (studentNodeField.Name == "age")
+                    if (studentFieldNode.Name == "age")
                     {
-                        Console.WriteLine($"Age: {studentNodeField.InnerText}");
+                        Console.WriteLine($"Age: {studentFieldNode.InnerText}");
                     }
                     // if node - group
-                    if (studentNodeField.Name == "group")
+                    if (studentFieldNode.Name == "group")
                     {
-                        /* here is for group */
+                        XmlNode groupAttr = studentFieldNode.Attributes.GetNamedItem("name");
+                        if (groupAttr != null)
+                            Console.WriteLine(groupAttr.Value);
+
+                        // bypassing all the child nodes of <group>
+                        foreach (XmlNode groupFieldNode in studentFieldNode.ChildNodes)
+                        {
+                            if (groupFieldNode.Name == "number")
+                            {
+                                Console.WriteLine($"Number of group: {groupFieldNode.InnerText}");
+                            }
+                        }
                     }
                 }
                 Console.WriteLine();
