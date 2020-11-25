@@ -6,6 +6,7 @@ namespace xmlFile
 {
     class Program
     {
+        
         static void Main(string[] args)
         {
             Group group1 = new Group(953504, "amazing group");
@@ -69,6 +70,55 @@ namespace xmlFile
                 }
                 Console.WriteLine();
             }
+
+
+
+
+
+            /* adding object to xml file */
+            XmlDocument xDoc1 = new XmlDocument();
+            xDoc1.Load(@"D:\Programming\Other\CSharp\xmlFile\xmlFile\data.xml");
+            XmlElement xRoot1 = xDoc1.DocumentElement;
+
+            // создаем новый элемент student
+            XmlElement studentElem = xDoc1.CreateElement("student");
+
+            // создаем атрибут name и текст аттрибута
+            XmlAttribute studentAttr = xDoc1.CreateAttribute("name");
+            XmlText studentAttrText = xDoc1.CreateTextNode("Vasya Pupkin");
+
+            // создаем элемент age
+            XmlElement ageElem = xDoc1.CreateElement("age");
+            XmlText ageText = xDoc1.CreateTextNode("20");
+
+
+            //создаем элемент группа
+            XmlElement groupElem = xDoc1.CreateElement("group");
+      
+            // создаем атрибут name группы и текст аттрибута
+            XmlAttribute groupAttr1 = xDoc1.CreateAttribute("name");
+            XmlText groupAttrText = xDoc1.CreateTextNode("amazing group");
+
+            // создаем элемент номер группы
+            XmlElement groupNumber = xDoc1.CreateElement("number");
+            XmlText groupNumberText = xDoc1.CreateTextNode("953500");
+
+            // собираем группу
+            groupAttr1.AppendChild(groupAttrText);       // вставляем текст атрибута в атрибут
+            groupElem.Attributes.Append(groupAttr1);     // вставляем атрибут в группу
+            groupNumber.AppendChild(groupNumberText);   // вставляем текст номера группы в номер группы
+            groupElem.AppendChild(groupNumber);         // вставляем номер группы в группу  
+
+            // собираем студента 
+            studentAttr.AppendChild(studentAttrText);   // вставляем текст атрибута в атрибут
+            studentElem.Attributes.Append(studentAttr); // вставляем атрибут в студента
+            ageElem.AppendChild(ageText);               // вставляем текст возраста в возраст
+            studentElem.AppendChild(ageElem);           // вставляем возраст в студента
+            studentElem.AppendChild(groupElem);         // вставляем группу в студента
+
+
+            xRoot1.AppendChild(studentElem);
+            xDoc1.Save(@"D:\Programming\Other\CSharp\xmlFile\xmlFile\data.xml");
         }
     }
 }

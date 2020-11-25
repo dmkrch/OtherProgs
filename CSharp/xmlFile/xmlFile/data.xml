@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <students>
   <student name="Vasya">
     <age>18</age>
@@ -18,5 +18,16 @@
       <number>951001</number>
     </group>
   </student>
+  <student name="Vasya Pupkin">
+    <age>20</age>
+    <group name="amazing group">
+      <number>953500</number>
+    </group>
+  </student>
+  <student name="Vasya Pupkin">
+    <age>20</age>
+    <group name="amazing group">
+      <number>953500</number>
+    </group>
+  </student>
 </students>
-    
