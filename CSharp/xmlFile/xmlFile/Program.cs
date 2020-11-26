@@ -9,7 +9,7 @@ namespace xmlFile
         
         static void Main(string[] args)
         {
-            Group group1 = new Group(953504, "amazing group");
+            /*Group group1 = new Group(953504, "amazing group");
             Group group2 = new Group(953501, "poor group");
 
             Student st1 = new Student("Vasya", 18, group1);
@@ -69,8 +69,7 @@ namespace xmlFile
                     }
                 }
                 Console.WriteLine();
-            }
-
+            }*/
 
 
 
@@ -104,8 +103,8 @@ namespace xmlFile
             XmlText groupNumberText = xDoc1.CreateTextNode("953500");
 
             // собираем группу
-            groupAttr1.AppendChild(groupAttrText);       // вставляем текст атрибута в атрибут
-            groupElem.Attributes.Append(groupAttr1);     // вставляем атрибут в группу
+            groupAttr1.AppendChild(groupAttrText);      // вставляем текст атрибута в атрибут
+            groupElem.Attributes.Append(groupAttr1);    // вставляем атрибут в группу
             groupNumber.AppendChild(groupNumberText);   // вставляем текст номера группы в номер группы
             groupElem.AppendChild(groupNumber);         // вставляем номер группы в группу  
 
@@ -117,8 +116,31 @@ namespace xmlFile
             studentElem.AppendChild(groupElem);         // вставляем группу в студента
 
 
-            xRoot1.AppendChild(studentElem);
+            //xRoot1.AppendChild(studentElem);
             xDoc1.Save(@"D:\Programming\Other\CSharp\xmlFile\xmlFile\data.xml");
+
+
+            XmlDocument xDoc = new XmlDocument();
+            xDoc.Load("D://users.xml");
+            XmlElement xRoot = xDoc.DocumentElement;
+
+
+            XmlNodeList childnodes = xRoot.SelectNodes("//student/group");
+            foreach (XmlNode n in childnodes)
+            {
+
+                XmlNode groupAttr = n.Attributes.GetNamedItem("name");
+                if (groupAttr != null)
+                    Console.WriteLine(groupAttr.Value);
+
+                foreach (XmlNode groupFieldNode in n.ChildNodes)
+                {
+                    if (groupFieldNode.Name == "number")
+                    {
+                        Console.WriteLine($"Number of group: {groupFieldNode.InnerText}");
+                    }
+                }
+            }
         }
     }
 }

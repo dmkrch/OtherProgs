@@ -18,16 +18,4 @@
       <number>951001</number>
     </group>
   </student>
-  <student name="Vasya Pupkin">
-    <age>20</age>
-    <group name="amazing group">
-      <number>953500</number>
-    </group>
-  </student>
-  <student name="Vasya Pupkin">
-    <age>20</age>
-    <group name="amazing group">
-      <number>953500</number>
-    </group>
-  </student>
 </students>
